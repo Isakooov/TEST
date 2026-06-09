@@ -1,111 +1,59 @@
-# ComfyUI Error Report
-## Error Details
-- **Node ID:** 48
-- **Node Type:** SamplerCustomAdvanced
-- **Exception Type:** TypeError
-- **Exception Message:** TypeError: pulid_outer_sample_wrappers_with_override() got an unexpected keyword argument 'latent_shapes'. Did you mean 'latent_image'?
 
-## Stack Trace
-```
-  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\execution.py", line 535, in execute
-    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
-                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D:\Program Files (x86)\ComfyUI_windows_portable>.\python_embeded\python.exe -s ComfyUI\main.py --windows-standalone-build
+setup plugin alembic.autogenerate.schemas
+setup plugin alembic.autogenerate.tables
+setup plugin alembic.autogenerate.types
+setup plugin alembic.autogenerate.constraints
+setup plugin alembic.autogenerate.defaults
+setup plugin alembic.autogenerate.comments
+[START] Security scan
+[DONE] Security scan
+## ComfyUI-Manager: installing dependencies done.
+** ComfyUI startup time: 2026-06-09 20:14:32.701
+** Platform: Windows
+** Python version: 3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]
+** Python executable: D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\python.exe
+** ComfyUI Path: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI
+** ComfyUI Base Folder Path: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI
+** User directory: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\user
+** ComfyUI-Manager config path: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\user\__manager\config.ini
+** Log path: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\user\comfyui.log
+Failed to execute startup-script: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-TRELLIS2\prestartup_script.py / No module named 'comfy_env'
 
-  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\execution.py", line 335, in get_output_data
-    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\execution.py", line 309, in _async_map_node_over_list
-    await process_inputs(input_dict, i)
-
-  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\execution.py", line 297, in process_inputs
-    result = f(**inputs)
-
-  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy_api\internal\__init__.py", line 149, in wrapped_func
-    return method(locked_class, **inputs)
-
-  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy_api\latest\_io.py", line 1833, in EXECUTE_NORMALIZED
-    to_return = cls.execute(*args, **kwargs)
-
-  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy_extras\nodes_custom_sampler.py", line 967, in execute
-    samples = guider.sample(noise.generate_noise(latent), latent_image, sampler, sigmas, denoise_mask=noise_mask, callback=callback, disable_pbar=disable_pbar, seed=noise.seed)
-
-  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 1052, in sample
-    output = executor.execute(noise, latent_image, sampler, sigmas, denoise_mask, callback, disable_pbar, seed, latent_shapes=latent_shapes)
-
-  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 113, in execute
-    return self.wrappers[self.idx](self, *args, **kwargs)
-           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-
-```
-## System Information
-- **ComfyUI Version:** 0.22.0
-- **Arguments:** ComfyUI\main.py --windows-standalone-build
-- **OS:** win32
-- **Python Version:** 3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]
-- **Embedded Python:** true
-- **PyTorch Version:** 2.11.0+cu130
-## Devices
-
-- **Name:** cuda:0 NVIDIA GeForce RTX 3060 : cudaMallocAsync
-  - **Type:** cuda
-  - **VRAM Total:** 12884377600
-  - **VRAM Free:** 11801722880
-  - **Torch VRAM Total:** 0
-  - **Torch VRAM Free:** 0
-
-## Logs
-```
-2026-06-09T19:37:52.102331 - setup plugin alembic.autogenerate.schemas
-2026-06-09T19:37:52.103498 - setup plugin alembic.autogenerate.tables
-2026-06-09T19:37:52.104023 - setup plugin alembic.autogenerate.types
-2026-06-09T19:37:52.104145 - setup plugin alembic.autogenerate.constraints
-2026-06-09T19:37:52.104301 - setup plugin alembic.autogenerate.defaults
-2026-06-09T19:37:52.104426 - setup plugin alembic.autogenerate.comments
-2026-06-09T19:37:52.572720 - [START] Security scan2026-06-09T19:37:52.572730 - 
-2026-06-09T19:37:53.495399 - [DONE] Security scan2026-06-09T19:37:53.495411 - 
-2026-06-09T19:37:53.968775 - ## ComfyUI-Manager: installing dependencies done.2026-06-09T19:37:53.968865 - 
-2026-06-09T19:37:53.968962 - ** ComfyUI startup time:2026-06-09T19:37:53.969000 -  2026-06-09T19:37:53.969035 - 2026-06-09 19:37:53.9682026-06-09T19:37:53.969070 - 
-2026-06-09T19:37:53.969106 - ** Platform:2026-06-09T19:37:53.969140 -  2026-06-09T19:37:53.969172 - Windows2026-06-09T19:37:53.969203 - 
-2026-06-09T19:37:53.969236 - ** Python version:2026-06-09T19:37:53.969269 -  2026-06-09T19:37:53.969300 - 3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]2026-06-09T19:37:53.969335 - 
-2026-06-09T19:37:53.969367 - ** Python executable:2026-06-09T19:37:53.969398 -  2026-06-09T19:37:53.969429 - D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\python.exe2026-06-09T19:37:53.969465 - 
-2026-06-09T19:37:53.969497 - ** ComfyUI Path:2026-06-09T19:37:53.969528 -  2026-06-09T19:37:53.969560 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI2026-06-09T19:37:53.969593 - 
-2026-06-09T19:37:53.969624 - ** ComfyUI Base Folder Path:2026-06-09T19:37:53.969657 -  2026-06-09T19:37:53.969687 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI2026-06-09T19:37:53.969723 - 
-2026-06-09T19:37:53.969756 - ** User directory:2026-06-09T19:37:53.969787 -  2026-06-09T19:37:53.970111 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\user2026-06-09T19:37:53.970149 - 
-2026-06-09T19:37:53.970177 - ** ComfyUI-Manager config path:2026-06-09T19:37:53.970206 -  2026-06-09T19:37:53.970232 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\user\__manager\config.ini2026-06-09T19:37:53.970260 - 
-2026-06-09T19:37:53.970292 - ** Log path:2026-06-09T19:37:53.970319 -  2026-06-09T19:37:53.970345 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\user\comfyui.log2026-06-09T19:37:53.970373 - 
-2026-06-09T19:37:54.858404 - Failed to execute startup-script: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-TRELLIS2\prestartup_script.py / No module named 'comfy_env'
-2026-06-09T19:37:54.858840 - 
 Prestartup times for custom nodes:
-2026-06-09T19:37:54.858923 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Marigold
-2026-06-09T19:37:54.859057 -    0.0 seconds (PRESTARTUP FAILED): D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-TRELLIS2
-2026-06-09T19:37:54.859190 -    2.7 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
-2026-06-09T19:37:54.859324 - 
-2026-06-09T19:37:56.917818 - Found comfy_kitchen backend cuda: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_nvfp4']}
-2026-06-09T19:37:56.918045 - Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4']}
-2026-06-09T19:37:56.921159 - Found comfy_kitchen backend triton: {'available': False, 'disabled': True, 'unavailable_reason': "ImportError: No module named 'triton'", 'capabilities': []}
-2026-06-09T19:37:56.926485 - Checkpoint files will always be loaded safely.
-2026-06-09T19:37:57.033292 - Total VRAM 12288 MB, total RAM 32637 MB
-2026-06-09T19:37:57.033538 - pytorch version: 2.11.0+cu130
-2026-06-09T19:37:57.034394 - Set vram state to: NORMAL_VRAM
-2026-06-09T19:37:57.034751 - Device: cuda:0 NVIDIA GeForce RTX 3060 : cudaMallocAsync
-2026-06-09T19:37:57.047230 - Using async weight offloading with 2 streams
-2026-06-09T19:37:57.049925 - Enabled pinned memory 13054.0
-2026-06-09T19:37:57.188033 - Using pytorch attention
-2026-06-09T19:37:59.412753 - DynamicVRAM support detected and enabled
-2026-06-09T19:37:59.412878 - Python version: 3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]
-2026-06-09T19:37:59.412978 - ComfyUI version: 0.22.0
-2026-06-09T19:37:59.413523 - comfy-aimdo version: 0.3.0
-2026-06-09T19:37:59.414045 - comfy-kitchen version: 0.2.8
-2026-06-09T19:37:59.417722 - comfyui-frontend-package version: 1.43.18
-2026-06-09T19:37:59.417845 - comfyui-workflow-templates version: 0.9.79
-2026-06-09T19:37:59.418030 - comfyui-embedded-docs version: 0.5.0
-2026-06-09T19:37:59.418155 - comfy-kitchen version: 0.2.8
-2026-06-09T19:37:59.418285 - comfy-aimdo version: 0.3.0
-2026-06-09T19:37:59.419255 - [Prompt Server] web root: D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\comfyui_frontend_package\static
-2026-06-09T19:37:59.419974 - Asset seeder disabled
-2026-06-09T19:38:00.554323 - ComfyUI-GGUF: Allowing full torch compile
-2026-06-09T19:38:00.560414 - Traceback (most recent call last):
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Marigold
+   0.0 seconds (PRESTARTUP FAILED): D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-TRELLIS2
+   2.2 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
+
+Found comfy_kitchen backend triton: {'available': False, 'disabled': True, 'unavailable_reason': "ImportError: No module named 'triton'", 'capabilities': []}
+Found comfy_kitchen backend cuda: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_nvfp4']}
+Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4']}
+Checkpoint files will always be loaded safely.
+Total VRAM 12288 MB, total RAM 32637 MB
+pytorch version: 2.11.0+cu130
+Set vram state to: NORMAL_VRAM
+Device: cuda:0 NVIDIA GeForce RTX 3060 : cudaMallocAsync
+Using async weight offloading with 2 streams
+Enabled pinned memory 13054.0
+Using pytorch attention
+aimdo: src-win/cuda-detour.c:38:INFO:aimdo_setup_hooks: installing 6 hooks
+aimdo: src-win/cuda-detour.c:28:DEBUG:install_hook_entries: hooks successfully installed
+aimdo: src-win/shmem-detect.c:80:INFO:comfy-aimdo WDDM adapter match: NVIDIA GeForce RTX 3060 runtime_luid=00000000:0000fa42 dxgi_luid=00000000:0000fa42
+aimdo: src/control.c:152:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 3060 (VRAM: 12287 MB)
+DynamicVRAM support detected and enabled
+Python version: 3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]
+ComfyUI version: 0.22.0
+comfy-aimdo version: 0.3.0
+comfy-kitchen version: 0.2.8
+comfyui-frontend-package version: 1.43.18
+comfyui-workflow-templates version: 0.9.79
+comfyui-embedded-docs version: 0.5.0
+comfy-kitchen version: 0.2.8
+comfy-aimdo version: 0.3.0
+[Prompt Server] web root: D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\comfyui_frontend_package\static
+Asset seeder disabled
+ComfyUI-GGUF: Allowing full torch compile
+Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\nodes.py", line 2204, in load_custom_node
     module_spec.loader.exec_module(module)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
@@ -118,55 +66,55 @@ Prestartup times for custom nodes:
     ^^^
 SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 149-150: truncated \UXXXXXXXX escape
 
-2026-06-09T19:38:00.560805 - Cannot import D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GGUF-FantasyTalking module for custom nodes: (unicode error) 'unicodeescape' codec can't decode bytes in position 149-150: truncated \UXXXXXXXX escape (nodes.py, line 608)
-2026-06-09T19:38:01.688504 - ### Loading: ComfyUI-Manager (V3.40)
-2026-06-09T19:38:01.689127 - [ComfyUI-Manager] network_mode: public
-2026-06-09T19:38:01.689323 - [ComfyUI-Manager] ComfyUI per-queue preview override detected (PR #11261). Manager's preview method feature is disabled. Use ComfyUI's --preview-method CLI option or 'Settings > Execution > Live preview method'.
-2026-06-09T19:38:01.755184 - ### ComfyUI Revision: 150 [a8d25190] *DETACHED | Released on '2026-05-20'
-2026-06-09T19:38:01.833164 - [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
-2026-06-09T19:38:01.846801 - [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
-2026-06-09T19:38:01.886743 - [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/github-stats.json
-2026-06-09T19:38:01.964202 - [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
-2026-06-09T19:38:02.050967 - [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
-2026-06-09T19:38:02.065170 - Total VRAM 12288 MB, total RAM 32637 MB
-2026-06-09T19:38:02.065362 - pytorch version: 2.11.0+cu130
-2026-06-09T19:38:02.066023 - Set vram state to: NORMAL_VRAM
-2026-06-09T19:38:02.066219 - Device: cuda:0 NVIDIA GeForce RTX 3060 : cudaMallocAsync
-2026-06-09T19:38:02.078821 - Using async weight offloading with 2 streams
-2026-06-09T19:38:02.081655 - Enabled pinned memory 13054.0
-2026-06-09T19:38:02.353933 - ======================================== ComfyUI-nunchaku Initialization ========================================
-2026-06-09T19:38:02.355041 - Nunchaku version: Package 'nunchaku' not found.
-2026-06-09T19:38:02.355953 - ComfyUI-nunchaku version: 1.2.1
-2026-06-09T19:38:02.356148 - Could not parse nunchaku version: Package 'nunchaku' not found.. Please ensure you have at least v1.0.0.
-2026-06-09T19:38:02.358833 - Node `NunchakuFluxDiTLoader` import failed:
+Cannot import D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GGUF-FantasyTalking module for custom nodes: (unicode error) 'unicodeescape' codec can't decode bytes in position 149-150: truncated \UXXXXXXXX escape (nodes.py, line 608)
+### Loading: ComfyUI-Manager (V3.40)
+[ComfyUI-Manager] network_mode: public
+[ComfyUI-Manager] ComfyUI per-queue preview override detected (PR #11261). Manager's preview method feature is disabled. Use ComfyUI's --preview-method CLI option or 'Settings > Execution > Live preview method'.
+### ComfyUI Revision: 150 [a8d25190] *DETACHED | Released on '2026-05-20'
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/github-stats.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
+Total VRAM 12288 MB, total RAM 32637 MB
+pytorch version: 2.11.0+cu130
+Set vram state to: NORMAL_VRAM
+Device: cuda:0 NVIDIA GeForce RTX 3060 : cudaMallocAsync
+Using async weight offloading with 2 streams
+Enabled pinned memory 13054.0
+======================================== ComfyUI-nunchaku Initialization ========================================
+Nunchaku version: Package 'nunchaku' not found.
+ComfyUI-nunchaku version: 1.2.1
+Could not parse nunchaku version: Package 'nunchaku' not found.. Please ensure you have at least v1.0.0.
+Node `NunchakuFluxDiTLoader` import failed:
 Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\__init__.py", line 82, in <module>
     from .nodes.models.flux import NunchakuFluxDiTLoader
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\nodes\models\flux.py", line 16, in <module>
     from nunchaku import NunchakuFluxTransformer2dModel
 ModuleNotFoundError: No module named 'nunchaku'
-2026-06-09T19:38:02.360240 - Node `NunchakuQwenImageDiTLoader` import failed:
+Node `NunchakuQwenImageDiTLoader` import failed:
 Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\__init__.py", line 89, in <module>
     from .nodes.models.qwenimage import NunchakuQwenImageDiTLoader
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\nodes\models\qwenimage.py", line 13, in <module>
     from nunchaku.utils import check_hardware_compatibility, get_gpu_memory, get_precision_from_quantization_config
 ModuleNotFoundError: No module named 'nunchaku'
-2026-06-09T19:38:02.362055 - Nodes `NunchakuFluxLoraLoader` and `NunchakuFluxLoraStack` import failed:
+Nodes `NunchakuFluxLoraLoader` and `NunchakuFluxLoraStack` import failed:
 Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\__init__.py", line 96, in <module>
     from .nodes.lora.flux import NunchakuFluxLoraLoader, NunchakuFluxLoraStack
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\nodes\lora\flux.py", line 9, in <module>
     from nunchaku.lora.flux import to_diffusers
 ModuleNotFoundError: No module named 'nunchaku'
-2026-06-09T19:38:02.363460 - Nodes `NunchakuTextEncoderLoader` and `NunchakuTextEncoderLoaderV2` import failed:
+Nodes `NunchakuTextEncoderLoader` and `NunchakuTextEncoderLoaderV2` import failed:
 Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\__init__.py", line 104, in <module>
     from .nodes.models.text_encoder import NunchakuTextEncoderLoader, NunchakuTextEncoderLoaderV2
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\nodes\models\text_encoder.py", line 18, in <module>
     from nunchaku import NunchakuT5EncoderModel
 ModuleNotFoundError: No module named 'nunchaku'
-2026-06-09T19:38:02.366662 - Nodes `NunchakuPulidApply`,`NunchakuPulidLoader`, `NunchakuPuLIDLoaderV2` and `NunchakuFluxPuLIDApplyV2` import failed:
+Nodes `NunchakuPulidApply`,`NunchakuPulidLoader`, `NunchakuPuLIDLoaderV2` and `NunchakuFluxPuLIDApplyV2` import failed:
 Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\__init__.py", line 119, in <module>
     from .nodes.models.pulid import (
@@ -175,38 +123,38 @@ Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\nodes\models\pulid.py", line 19, in <module>
     from nunchaku.models.pulid.pulid_forward import pulid_forward
 ModuleNotFoundError: No module named 'nunchaku'
-2026-06-09T19:38:02.386699 - Nodes `NunchakuFluxIPAdapterApply` and `NunchakuIPAdapterLoader` import failed:
+Nodes `NunchakuFluxIPAdapterApply` and `NunchakuIPAdapterLoader` import failed:
 Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\__init__.py", line 136, in <module>
     from .nodes.models.ipadapter import NunchakuFluxIPAdapterApply, NunchakuIPAdapterLoader
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\nodes\models\ipadapter.py", line 14, in <module>
     from nunchaku.models.ip_adapter.diffusers_adapters import apply_IPA_on_pipe
 ModuleNotFoundError: No module named 'nunchaku'
-2026-06-09T19:38:02.388210 - Nodes `NunchakuZImageDiTLoader` import failed:
+Nodes `NunchakuZImageDiTLoader` import failed:
 Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\__init__.py", line 144, in <module>
     from .nodes.models.zimage import NunchakuZImageDiTLoader
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\nodes\models\zimage.py", line 12, in <module>
     from nunchaku.models.transformers.utils import convert_fp16, patch_scale_key
 ModuleNotFoundError: No module named 'nunchaku'
-2026-06-09T19:38:02.390370 - Node `NunchakuModelMerger` import failed:
+Node `NunchakuModelMerger` import failed:
 Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\__init__.py", line 151, in <module>
     from .nodes.tools.merge_safetensors import NunchakuModelMerger
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku\nodes\tools\merge_safetensors.py", line 10, in <module>
     from nunchaku.merge_safetensors import merge_safetensors
 ModuleNotFoundError: No module named 'nunchaku'
-2026-06-09T19:38:02.391254 - 'nunchaku_versions.json' not found. Node will start in minimal mode. Use 'update node' to fetch versions.2026-06-09T19:38:02.391361 - 
-2026-06-09T19:38:02.391505 - =================================================================================================================
-2026-06-09T19:38:02.393370 - ======================================== ComfyUI-QwenImageLoraLoader Initialization ========================================
-2026-06-09T19:38:02.395008 - nunchaku.models.linear.SVDQW4A4Linear not importable; lazy-Linear patch skipped.
-2026-06-09T19:38:02.396929 - Error importing/applying Nunchaku monkey patch: No module named 'nunchaku'
-2026-06-09T19:38:02.398357 - [DEBUG] Added to sys.path: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-QwenImageLoraLoader2026-06-09T19:38:02.398416 - 
-2026-06-09T19:38:02.398635 - [DEBUG] wrappers dir exists: True2026-06-09T19:38:02.398819 - 
-2026-06-09T19:38:02.398971 - [DEBUG] qwenimage.py exists: True2026-06-09T19:38:02.400110 - 
-2026-06-09T19:38:02.402456 - ============================================================================================================================
-2026-06-09T19:38:02.404735 - [trellis2] loading...2026-06-09T19:38:02.405260 - 
-2026-06-09T19:38:02.405990 - Traceback (most recent call last):
+'nunchaku_versions.json' not found. Node will start in minimal mode. Use 'update node' to fetch versions.
+=================================================================================================================
+======================================== ComfyUI-QwenImageLoraLoader Initialization ========================================
+nunchaku.models.linear.SVDQW4A4Linear not importable; lazy-Linear patch skipped.
+Error importing/applying Nunchaku monkey patch: No module named 'nunchaku'
+[DEBUG] Added to sys.path: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-QwenImageLoraLoader
+[DEBUG] wrappers dir exists: True
+[DEBUG] qwenimage.py exists: True
+============================================================================================================================
+[trellis2] loading...
+Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\nodes.py", line 2204, in load_custom_node
     module_spec.loader.exec_module(module)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
@@ -216,91 +164,94 @@ ModuleNotFoundError: No module named 'nunchaku'
     from comfy_env import register_nodes
 ModuleNotFoundError: No module named 'comfy_env'
 
-2026-06-09T19:38:02.406267 - Cannot import D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-TRELLIS2 module for custom nodes: No module named 'comfy_env'
-2026-06-09T19:38:02.411909 - ComfyUI-GGUF: Allowing full torch compile
-2026-06-09T19:38:02.416125 - [36;20m[D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux] | INFO -> Using ckpts path: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts[0m
-2026-06-09T19:38:02.417556 - [36;20m[D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux] | INFO -> Using symlinks: False[0m
-2026-06-09T19:38:02.418858 - [36;20m[D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider'][0m
-2026-06-09T19:38:02.599241 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\node_wrappers\dwpose.py:26: UserWarning: DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly
+Cannot import D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-TRELLIS2 module for custom nodes: No module named 'comfy_env'
+ComfyUI-GGUF: Allowing full torch compile
+[D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux] | INFO -> Using ckpts path: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\ckpts
+[D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux] | INFO -> Using symlinks: False
+[D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider']
+D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux\node_wrappers\dwpose.py:26: UserWarning: DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly
   warnings.warn("DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly")
-2026-06-09T19:38:03.119424 - D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\timm\models\layers\__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\timm\models\layers\__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
   warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
-2026-06-09T19:38:03.121510 - Please 'pip install xformers'2026-06-09T19:38:03.121590 - 
-2026-06-09T19:38:03.122897 - Nvidia APEX normalization not installed, using PyTorch LayerNorm2026-06-09T19:38:03.123009 - 
-2026-06-09T19:38:03.247362 - 
-[32mInitializing ControlAltAI Nodes[0m2026-06-09T19:38:03.247546 - 
-2026-06-09T19:38:03.259552 - 
-Import times for custom nodes:
-2026-06-09T19:38:03.259692 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
-2026-06-09T19:38:03.259923 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\image-size-tools
-2026-06-09T19:38:03.260116 -    0.0 seconds (IMPORT FAILED): D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-TRELLIS2
-2026-06-09T19:38:03.260316 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_IPAdapter_plus
-2026-06-09T19:38:03.260524 -    0.0 seconds (IMPORT FAILED): D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GGUF-FantasyTalking
-2026-06-09T19:38:03.260590 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Zlycoris
-2026-06-09T19:38:03.260647 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\controlaltai-nodes
-2026-06-09T19:38:03.260811 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-QwenImageLoraLoader
-2026-06-09T19:38:03.260871 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_Swwan
-2026-06-09T19:38:03.261036 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GGUF
-2026-06-09T19:38:03.261094 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui-kjnodes
-2026-06-09T19:38:03.261259 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_StableDelight_ll
-2026-06-09T19:38:03.261393 -    0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku
-2026-06-09T19:38:03.261537 -    0.1 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
-2026-06-09T19:38:03.261664 -    0.2 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux
-2026-06-09T19:38:03.261793 -    0.3 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_pulid_flux_ll
-2026-06-09T19:38:03.261921 -    0.3 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_InstantID
-2026-06-09T19:38:03.262052 -    0.6 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Marigold
-2026-06-09T19:38:03.262180 -    1.1 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Lotus
-2026-06-09T19:38:03.262307 - 
-2026-06-09T19:38:03.264286 - Context impl SQLiteImpl.
-2026-06-09T19:38:03.264378 - Will assume non-transactional DDL.
-2026-06-09T19:38:03.351895 - Starting server
+Please 'pip install xformers'
+Nvidia APEX normalization not installed, using PyTorch LayerNorm
 
-2026-06-09T19:38:03.352301 - To see the GUI go to: http://127.0.0.1:8188
-2026-06-09T19:38:04.014683 - [DEPRECATION WARNING] Detected import of deprecated legacy API: /scripts/ui.js. This is likely caused by a custom node extension using outdated APIs. Please update your extensions or contact the extension author for an updated version.
-2026-06-09T19:38:04.016427 - [DEPRECATION WARNING] Detected import of deprecated legacy API: /extensions/core/groupNode.js. This is likely caused by a custom node extension using outdated APIs. Please update your extensions or contact the extension author for an updated version.
-2026-06-09T19:38:04.367522 - [DEPRECATION WARNING] Detected import of deprecated legacy API: /scripts/ui/components/buttonGroup.js. This is likely caused by a custom node extension using outdated APIs. Please update your extensions or contact the extension author for an updated version.
-2026-06-09T19:38:04.375509 - [DEPRECATION WARNING] Detected import of deprecated legacy API: /scripts/ui/components/button.js. This is likely caused by a custom node extension using outdated APIs. Please update your extensions or contact the extension author for an updated version.
-2026-06-09T19:38:05.797487 - FETCH ComfyRegistry Data: 5/1522026-06-09T19:38:05.797615 - 
-2026-06-09T19:38:09.891857 - FETCH ComfyRegistry Data: 10/1522026-06-09T19:38:09.892021 - 
-2026-06-09T19:38:11.609181 - got prompt
-2026-06-09T19:38:11.629344 - Using pytorch attention in VAE
-2026-06-09T19:38:11.630768 - Using pytorch attention in VAE
-2026-06-09T19:38:11.713218 - VAE load device: cuda:0, offload device: cpu, dtype: torch.bfloat16
-2026-06-09T19:38:11.753182 - model weight dtype torch.float8_e4m3fn, manual cast: torch.bfloat16
-2026-06-09T19:38:11.756943 - model_type FLUX
-2026-06-09T19:38:12.174216 - clip missing: ['text_projection.weight']
-2026-06-09T19:38:12.174472 - CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
-2026-06-09T19:38:12.177693 - Requested to load FluxClipModel_
-2026-06-09T19:38:13.949776 - loaded completely; 9835.80 MB usable, 4778.66 MB loaded, full load: True
-2026-06-09T19:38:14.017752 - FETCH ComfyRegistry Data: 15/1522026-06-09T19:38:14.017912 - 
-2026-06-09T19:38:14.887762 - Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}2026-06-09T19:38:14.887921 - 
-2026-06-09T19:38:14.954598 - find model:2026-06-09T19:38:14.954709 -  2026-06-09T19:38:14.954859 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\1k3d68.onnx2026-06-09T19:38:14.954960 -  2026-06-09T19:38:14.955069 - landmark_3d_682026-06-09T19:38:14.955168 -  2026-06-09T19:38:14.955415 - ['None', 3, 192, 192]2026-06-09T19:38:14.955519 -  2026-06-09T19:38:14.955627 - 0.02026-06-09T19:38:14.955739 -  2026-06-09T19:38:14.955889 - 1.02026-06-09T19:38:14.956052 - 
-2026-06-09T19:38:14.974166 - Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}2026-06-09T19:38:14.974323 - 
-2026-06-09T19:38:14.978374 - find model:2026-06-09T19:38:14.978510 -  2026-06-09T19:38:14.978645 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\2d106det.onnx2026-06-09T19:38:14.978785 -  2026-06-09T19:38:14.978922 - landmark_2d_1062026-06-09T19:38:14.979063 -  2026-06-09T19:38:14.979314 - ['None', 3, 192, 192]2026-06-09T19:38:14.979449 -  2026-06-09T19:38:14.979598 - 0.02026-06-09T19:38:14.979733 -  2026-06-09T19:38:14.979868 - 1.02026-06-09T19:38:14.980009 - 
-2026-06-09T19:38:14.993394 - Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}2026-06-09T19:38:14.993490 - 
-2026-06-09T19:38:14.995530 - find model:2026-06-09T19:38:14.995589 -  2026-06-09T19:38:14.995626 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\genderage.onnx2026-06-09T19:38:14.995667 -  2026-06-09T19:38:14.995699 - genderage2026-06-09T19:38:14.995760 -  2026-06-09T19:38:14.995970 - ['None', 3, 96, 96]2026-06-09T19:38:14.996039 -  2026-06-09T19:38:14.996083 - 0.02026-06-09T19:38:14.996116 -  2026-06-09T19:38:14.996148 - 1.02026-06-09T19:38:14.996180 - 
-2026-06-09T19:38:15.337472 - Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}2026-06-09T19:38:15.337605 - 
-2026-06-09T19:38:15.453581 - find model:2026-06-09T19:38:15.453701 -  2026-06-09T19:38:15.453864 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\glintr100.onnx2026-06-09T19:38:15.453964 -  2026-06-09T19:38:15.454064 - recognition2026-06-09T19:38:15.454176 -  2026-06-09T19:38:15.454449 - ['None', 3, 112, 112]2026-06-09T19:38:15.454549 -  2026-06-09T19:38:15.454654 - 127.52026-06-09T19:38:15.454755 -  2026-06-09T19:38:15.454854 - 127.52026-06-09T19:38:15.454953 - 
-2026-06-09T19:38:15.498262 - Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}2026-06-09T19:38:15.498410 - 
-2026-06-09T19:38:15.498612 - find model:2026-06-09T19:38:15.498876 -  2026-06-09T19:38:15.498999 - D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\scrfd_10g_bnkps.onnx2026-06-09T19:38:15.499123 -  2026-06-09T19:38:15.499297 - detection2026-06-09T19:38:15.499407 -  2026-06-09T19:38:15.499514 - [1, 3, '?', '?']2026-06-09T19:38:15.499597 -  2026-06-09T19:38:15.499717 - 127.52026-06-09T19:38:15.499837 -  2026-06-09T19:38:15.499961 - 128.02026-06-09T19:38:15.500128 - 
-2026-06-09T19:38:15.500222 - set det-size:2026-06-09T19:38:15.500480 -  2026-06-09T19:38:15.500606 - (640, 640)2026-06-09T19:38:15.500727 - 
-2026-06-09T19:38:15.501645 - Loaded EVA02-CLIP-L-14-336 model config.
-2026-06-09T19:38:15.507942 - Shape of rope freq: torch.Size([576, 64])
-2026-06-09T19:38:18.783012 - FETCH ComfyRegistry Data: 20/1522026-06-09T19:38:18.783169 - 
-2026-06-09T19:38:18.816629 - Loading pretrained EVA02-CLIP-L-14-336 weights (eva_clip).
-2026-06-09T19:38:19.205751 - incompatible_keys.missing_keys: ['visual.rope.freqs_cos', 'visual.rope.freqs_sin', 'visual.blocks.0.attn.rope.freqs_cos', 'visual.blocks.0.attn.rope.freqs_sin', 'visual.blocks.1.attn.rope.freqs_cos', 'visual.blocks.1.attn.rope.freqs_sin', 'visual.blocks.2.attn.rope.freqs_cos', 'visual.blocks.2.attn.rope.freqs_sin', 'visual.blocks.3.attn.rope.freqs_cos', 'visual.blocks.3.attn.rope.freqs_sin', 'visual.blocks.4.attn.rope.freqs_cos', 'visual.blocks.4.attn.rope.freqs_sin', 'visual.blocks.5.attn.rope.freqs_cos', 'visual.blocks.5.attn.rope.freqs_sin', 'visual.blocks.6.attn.rope.freqs_cos', 'visual.blocks.6.attn.rope.freqs_sin', 'visual.blocks.7.attn.rope.freqs_cos', 'visual.blocks.7.attn.rope.freqs_sin', 'visual.blocks.8.attn.rope.freqs_cos', 'visual.blocks.8.attn.rope.freqs_sin', 'visual.blocks.9.attn.rope.freqs_cos', 'visual.blocks.9.attn.rope.freqs_sin', 'visual.blocks.10.attn.rope.freqs_cos', 'visual.blocks.10.attn.rope.freqs_sin', 'visual.blocks.11.attn.rope.freqs_cos', 'visual.blocks.11.attn.rope.freqs_sin', 'visual.blocks.12.attn.rope.freqs_cos', 'visual.blocks.12.attn.rope.freqs_sin', 'visual.blocks.13.attn.rope.freqs_cos', 'visual.blocks.13.attn.rope.freqs_sin', 'visual.blocks.14.attn.rope.freqs_cos', 'visual.blocks.14.attn.rope.freqs_sin', 'visual.blocks.15.attn.rope.freqs_cos', 'visual.blocks.15.attn.rope.freqs_sin', 'visual.blocks.16.attn.rope.freqs_cos', 'visual.blocks.16.attn.rope.freqs_sin', 'visual.blocks.17.attn.rope.freqs_cos', 'visual.blocks.17.attn.rope.freqs_sin', 'visual.blocks.18.attn.rope.freqs_cos', 'visual.blocks.18.attn.rope.freqs_sin', 'visual.blocks.19.attn.rope.freqs_cos', 'visual.blocks.19.attn.rope.freqs_sin', 'visual.blocks.20.attn.rope.freqs_cos', 'visual.blocks.20.attn.rope.freqs_sin', 'visual.blocks.21.attn.rope.freqs_cos', 'visual.blocks.21.attn.rope.freqs_sin', 'visual.blocks.22.attn.rope.freqs_cos', 'visual.blocks.22.attn.rope.freqs_sin', 'visual.blocks.23.attn.rope.freqs_cos', 'visual.blocks.23.attn.rope.freqs_sin']
-2026-06-09T19:38:21.339911 - Loading PuLID-Flux model.
-2026-06-09T19:38:22.484041 - Requested to load PulidFluxModel
-2026-06-09T19:38:22.852156 - FETCH ComfyRegistry Data: 25/1522026-06-09T19:38:22.852322 - 
-2026-06-09T19:38:23.027736 - loaded completely;  1085.10 MB loaded, full load: True
-2026-06-09T19:38:23.037070 - D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+Initializing ControlAltAI Nodes
+
+Import times for custom nodes:
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\websocket_image_save.py
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\image-size-tools
+   0.0 seconds (IMPORT FAILED): D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-TRELLIS2
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_IPAdapter_plus
+   0.0 seconds (IMPORT FAILED): D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GGUF-FantasyTalking
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Zlycoris
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\controlaltai-nodes
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-QwenImageLoraLoader
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_Swwan
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-GGUF
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui-kjnodes
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_StableDelight_ll
+   0.0 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-nunchaku
+   0.1 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Manager
+   0.2 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui_controlnet_aux
+   0.3 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Marigold
+   0.3 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_InstantID
+   0.4 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_PuLID_Flux_ll
+   1.1 seconds: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI-Lotus
+
+Context impl SQLiteImpl.
+Will assume non-transactional DDL.
+Starting server
+
+To see the GUI go to: http://127.0.0.1:8188
+[DEPRECATION WARNING] Detected import of deprecated legacy API: /scripts/ui.js. This is likely caused by a custom node extension using outdated APIs. Please update your extensions or contact the extension author for an updated version.
+[DEPRECATION WARNING] Detected import of deprecated legacy API: /extensions/core/groupNode.js. This is likely caused by a custom node extension using outdated APIs. Please update your extensions or contact the extension author for an updated version.
+[DEPRECATION WARNING] Detected import of deprecated legacy API: /scripts/ui/components/buttonGroup.js. This is likely caused by a custom node extension using outdated APIs. Please update your extensions or contact the extension author for an updated version.
+[DEPRECATION WARNING] Detected import of deprecated legacy API: /scripts/ui/components/button.js. This is likely caused by a custom node extension using outdated APIs. Please update your extensions or contact the extension author for an updated version.
+FETCH ComfyRegistry Data: 5/152
+got prompt
+Using pytorch attention in VAE
+Using pytorch attention in VAE
+FETCH ComfyRegistry Data: 10/152
+VAE load device: cuda:0, offload device: cpu, dtype: torch.bfloat16
+model weight dtype torch.float8_e4m3fn, manual cast: torch.bfloat16
+model_type FLUX
+clip missing: ['text_projection.weight']
+CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+Requested to load FluxClipModel_
+loaded completely; 9835.80 MB usable, 4778.66 MB loaded, full load: True
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\1k3d68.onnx landmark_3d_68 ['None', 3, 192, 192] 0.0 1.0
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\2d106det.onnx landmark_2d_106 ['None', 3, 192, 192] 0.0 1.0
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\genderage.onnx genderage ['None', 3, 96, 96] 0.0 1.0
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\glintr100.onnx recognition ['None', 3, 112, 112] 127.5 127.5
+Applied providers: ['CPUExecutionProvider'], with options: {'CPUExecutionProvider': {}}
+find model: D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\models\insightface\models\antelopev2\scrfd_10g_bnkps.onnx detection [1, 3, '?', '?'] 127.5 128.0
+set det-size: (640, 640)
+Loaded EVA02-CLIP-L-14-336 model config.
+Shape of rope freq: torch.Size([576, 64])
+FETCH ComfyRegistry Data: 15/152
+Loading pretrained EVA02-CLIP-L-14-336 weights (eva_clip).
+incompatible_keys.missing_keys: ['visual.rope.freqs_cos', 'visual.rope.freqs_sin', 'visual.blocks.0.attn.rope.freqs_cos', 'visual.blocks.0.attn.rope.freqs_sin', 'visual.blocks.1.attn.rope.freqs_cos', 'visual.blocks.1.attn.rope.freqs_sin', 'visual.blocks.2.attn.rope.freqs_cos', 'visual.blocks.2.attn.rope.freqs_sin', 'visual.blocks.3.attn.rope.freqs_cos', 'visual.blocks.3.attn.rope.freqs_sin', 'visual.blocks.4.attn.rope.freqs_cos', 'visual.blocks.4.attn.rope.freqs_sin', 'visual.blocks.5.attn.rope.freqs_cos', 'visual.blocks.5.attn.rope.freqs_sin', 'visual.blocks.6.attn.rope.freqs_cos', 'visual.blocks.6.attn.rope.freqs_sin', 'visual.blocks.7.attn.rope.freqs_cos', 'visual.blocks.7.attn.rope.freqs_sin', 'visual.blocks.8.attn.rope.freqs_cos', 'visual.blocks.8.attn.rope.freqs_sin', 'visual.blocks.9.attn.rope.freqs_cos', 'visual.blocks.9.attn.rope.freqs_sin', 'visual.blocks.10.attn.rope.freqs_cos', 'visual.blocks.10.attn.rope.freqs_sin', 'visual.blocks.11.attn.rope.freqs_cos', 'visual.blocks.11.attn.rope.freqs_sin', 'visual.blocks.12.attn.rope.freqs_cos', 'visual.blocks.12.attn.rope.freqs_sin', 'visual.blocks.13.attn.rope.freqs_cos', 'visual.blocks.13.attn.rope.freqs_sin', 'visual.blocks.14.attn.rope.freqs_cos', 'visual.blocks.14.attn.rope.freqs_sin', 'visual.blocks.15.attn.rope.freqs_cos', 'visual.blocks.15.attn.rope.freqs_sin', 'visual.blocks.16.attn.rope.freqs_cos', 'visual.blocks.16.attn.rope.freqs_sin', 'visual.blocks.17.attn.rope.freqs_cos', 'visual.blocks.17.attn.rope.freqs_sin', 'visual.blocks.18.attn.rope.freqs_cos', 'visual.blocks.18.attn.rope.freqs_sin', 'visual.blocks.19.attn.rope.freqs_cos', 'visual.blocks.19.attn.rope.freqs_sin', 'visual.blocks.20.attn.rope.freqs_cos', 'visual.blocks.20.attn.rope.freqs_sin', 'visual.blocks.21.attn.rope.freqs_cos', 'visual.blocks.21.attn.rope.freqs_sin', 'visual.blocks.22.attn.rope.freqs_cos', 'visual.blocks.22.attn.rope.freqs_sin', 'visual.blocks.23.attn.rope.freqs_cos', 'visual.blocks.23.attn.rope.freqs_sin']
+FETCH ComfyRegistry Data: 20/152
+Loading PuLID-Flux model.
+Requested to load PulidFluxModel
+loaded completely;  1085.10 MB loaded, full load: True
+D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
   warnings.warn(
-2026-06-09T19:38:23.037292 - D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
   warnings.warn(msg)
-2026-06-09T19:38:23.742677 - D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\insightface\utils\face_align.py:23: FutureWarning: `estimate` is deprecated since version 0.26 and will be removed in version 2.2. Please use `SimilarityTransform.from_estimate` class constructor instead.
+D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\insightface\utils\face_align.py:23: FutureWarning: `estimate` is deprecated since version 0.26 and will be removed in version 2.2. Please use `SimilarityTransform.from_estimate` class constructor instead.
   tform.estimate(lmk, dst)
-2026-06-09T19:38:24.552872 - !!! Exception during processing !!! pulid_outer_sample_wrappers_with_override() got an unexpected keyword argument 'latent_shapes'. Did you mean 'latent_image'?
-2026-06-09T19:38:24.554985 - Traceback (most recent call last):
+FETCH ComfyRegistry Data: 25/152
+Requested to load Flux
+Model Flux prepared for dynamic VRAM loading. 11350MB Staged. 0 patches attached.
+  0%|                                                               | 0/10 [00:00<?, ?it/s,   Model Initializing ...  ]
+!!! Exception during processing !!! pulid_forward_orig() got an unexpected keyword argument 'timestep_zero_index'
+Traceback (most recent call last):
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\execution.py", line 535, in execute
     output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -322,19 +273,104 @@ Import times for custom nodes:
   File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 113, in execute
     return self.wrappers[self.idx](self, *args, **kwargs)
            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: pulid_outer_sample_wrappers_with_override() got an unexpected keyword argument 'latent_shapes'. Did you mean 'latent_image'?
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_PuLID_Flux_ll\pulidflux.py", line 625, in pulid_outer_sample_wrappers_with_override
+    out = wrapper_executor(noise, latent_image, sampler, sigmas, denoise_mask, callback, disable_pbar, seed, **kwargs)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 105, in __call__
+    return new_executor.execute(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 112, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 995, in outer_sample
+    output = self.inner_sample(noise, latent_image, device, sampler, sigmas, denoise_mask, callback, disable_pbar, seed, latent_shapes=latent_shapes)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 981, in inner_sample
+    samples = executor.execute(self, sigmas, extra_args, callback, noise, latent_image, denoise_mask, disable_pbar)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 112, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 751, in sample
+    samples = self.sampler_function(model_k, noise, sigmas, extra_args=extra_args, callback=k_callback, disable=disable_pbar, **self.extra_options)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\torch\utils\_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\k_diffusion\sampling.py", line 205, in sample_euler
+    denoised = model(x, sigma_hat * s_in, **extra_args)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 400, in __call__
+    out = self.inner_model(x, sigma, model_options=model_options, seed=seed)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 954, in __call__
+    return self.outer_predict_noise(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 961, in outer_predict_noise
+    ).execute(x, timestep, model_options, seed)
+      ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 112, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 964, in predict_noise
+    return sampling_function(self.inner_model, x, timestep, self.conds.get("negative", None), self.conds.get("positive", None), self.cfg, model_options=model_options, seed=seed)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 380, in sampling_function
+    out = calc_cond_batch(model, conds, x, timestep, model_options)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 205, in calc_cond_batch
+    return _calc_cond_batch_outer(model, conds, x_in, timestep, model_options)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 213, in _calc_cond_batch_outer
+    return executor.execute(model, conds, x_in, timestep, model_options)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 112, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\samplers.py", line 325, in _calc_cond_batch
+    output = model.apply_model(input_x, timestep_, **c).chunk(batch_chunks)
+             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\model_base.py", line 182, in apply_model
+    return comfy.patcher_extension.WrapperExecutor.new_class_executor(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ...<2 lines>...
+        comfy.patcher_extension.get_all_wrappers(comfy.patcher_extension.WrappersMP.APPLY_MODEL, transformer_options)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ).execute(x, t, c_concat, c_crossattn, control, transformer_options, **kwargs)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 113, in execute
+    return self.wrappers[self.idx](self, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\custom_nodes\ComfyUI_PuLID_Flux_ll\pulidflux.py", line 650, in pulid_apply_model_wrappers
+    out = wrapper_executor(x, t, c_concat, c_crossattn, control, transformer_options, **kwargs)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 105, in __call__
+    return new_executor.execute(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 112, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\model_base.py", line 226, in _apply_model
+    model_output = self.diffusion_model(xc, t, context=context, control=control, transformer_options=transformer_options, **extra_conds)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\python_embeded\Lib\site-packages\torch\nn\modules\module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\ldm\flux\model.py", line 345, in forward
+    return comfy.patcher_extension.WrapperExecutor.new_class_executor(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ...<2 lines>...
+        comfy.patcher_extension.get_all_wrappers(comfy.patcher_extension.WrappersMP.DIFFUSION_MODEL, transformer_options)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ).execute(x, timestep, context, y, guidance, ref_latents, control, transformer_options, **kwargs)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\patcher_extension.py", line 112, in execute
+    return self.original(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Program Files (x86)\ComfyUI_windows_portable\ComfyUI\comfy\ldm\flux\model.py", line 406, in _forward
+    out = self.forward_orig(img, img_ids, context, txt_ids, timestep, y, guidance, control, timestep_zero_index=timestep_zero_index, transformer_options=transformer_options, attn_mask=kwargs.get("attention_mask", None))
+TypeError: pulid_forward_orig() got an unexpected keyword argument 'timestep_zero_index'
 
-2026-06-09T19:38:24.557752 - Prompt executed in 12.94 seconds
-2026-06-09T19:38:27.301351 - FETCH ComfyRegistry Data: 30/1522026-06-09T19:38:27.301527 - 
-2026-06-09T19:38:31.262202 - FETCH ComfyRegistry Data: 35/1522026-06-09T19:38:31.262370 - 
-2026-06-09T19:38:35.749673 - FETCH ComfyRegistry Data: 40/1522026-06-09T19:38:35.749795 - 
-
-```
-## Attached Workflow
-Please make sure that workflow does not contain any sensitive information such as API keys or passwords.
-```
-{"id":"b4dfd4c4-d5cc-42eb-956e-a8435e543f00","revision":0,"last_node_id":63,"last_link_id":131,"nodes":[{"id":25,"type":"RandomNoise","pos":[6,-135],"size":[315,82],"flags":{},"order":0,"mode":0,"inputs":[{"localized_name":"noise_seed","name":"noise_seed","type":"INT","widget":{"name":"noise_seed"},"link":null}],"outputs":[{"localized_name":"NOISE","name":"NOISE","type":"NOISE","slot_index":0,"links":[84]}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"RandomNoise"},"widgets_values":[186462208016243,"fixed"],"color":"#2a363b","bgcolor":"#3f5159"},{"id":26,"type":"FluxGuidance","pos":[372,-171],"size":[317.4000244140625,58],"flags":{"collapsed":false},"order":13,"mode":0,"inputs":[{"localized_name":"conditioning","name":"conditioning","type":"CONDITIONING","link":41},{"localized_name":"guidance","name":"guidance","type":"FLOAT","widget":{"name":"guidance"},"link":null}],"outputs":[{"localized_name":"CONDITIONING","name":"CONDITIONING","type":"CONDITIONING","slot_index":0,"links":[107]}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"FluxGuidance"},"widgets_values":[3.5],"color":"#233","bgcolor":"#355"},{"id":27,"type":"EmptySD3LatentImage","pos":[383,155],"size":[315,106],"flags":{},"order":1,"mode":0,"inputs":[{"localized_name":"width","name":"width","type":"INT","widget":{"name":"width"},"link":null},{"localized_name":"height","name":"height","type":"INT","widget":{"name":"height"},"link":null},{"localized_name":"batch_size","name":"batch_size","type":"INT","widget":{"name":"batch_size"},"link":null}],"outputs":[{"localized_name":"LATENT","name":"LATENT","type":"LATENT","slot_index":0,"links":[86]}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"EmptySD3LatentImage"},"widgets_values":[768,1024,1],"color":"#323","bgcolor":"#535"},{"id":16,"type":"KSamplerSelect","pos":[384,313],"size":[315,58],"flags":{},"order":2,"mode":0,"inputs":[{"localized_name":"sampler_name","name":"sampler_name","type":"COMBO","widget":{"name":"sampler_name"},"link":null}],"outputs":[{"localized_name":"SAMPLER","name":"SAMPLER","type":"SAMPLER","slot_index":0,"links":[85]}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"KSamplerSelect"},"widgets_values":["euler"]},{"id":17,"type":"BasicScheduler","pos":[392,424],"size":[315,106],"flags":{"collapsed":false},"order":11,"mode":0,"inputs":[{"localized_name":"model","name":"model","type":"MODEL","link":130},{"localized_name":"scheduler","name":"scheduler","type":"COMBO","widget":{"name":"scheduler"},"link":null},{"localized_name":"steps","name":"steps","type":"INT","widget":{"name":"steps"},"link":null},{"localized_name":"denoise","name":"denoise","type":"FLOAT","widget":{"name":"denoise"},"link":null}],"outputs":[{"localized_name":"SIGMAS","name":"SIGMAS","type":"SIGMAS","slot_index":0,"links":[93]}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"BasicScheduler"},"widgets_values":["simple",10,1]},{"id":53,"type":"PulidFluxInsightFaceLoader","pos":[822,-80],"size":[365.4000244140625,58],"flags":{},"order":3,"mode":0,"inputs":[{"localized_name":"provider","name":"provider","type":"COMBO","widget":{"name":"provider"},"link":null}],"outputs":[{"localized_name":"FACEANALYSIS","name":"FACEANALYSIS","type":"FACEANALYSIS","slot_index":0,"links":[124]}],"properties":{"cnr_id":"comfyui_pulid_flux_ll","ver":"1.1.4","Node name for S&R":"PulidFluxInsightFaceLoader"},"widgets_values":["CPU"]},{"id":51,"type":"PulidFluxEvaClipLoader","pos":[845,52],"size":[327.5999755859375,26],"flags":{},"order":4,"mode":0,"inputs":[],"outputs":[{"localized_name":"EVA_CLIP","name":"EVA_CLIP","type":"EVA_CLIP","slot_index":0,"links":[123]}],"properties":{"cnr_id":"comfyui_pulid_flux_ll","ver":"1.1.4","Node name for S&R":"PulidFluxEvaClipLoader"},"widgets_values":[]},{"id":62,"type":"ApplyPulidFlux","pos":[842,258],"size":[315,226],"flags":{},"order":12,"mode":0,"inputs":[{"localized_name":"model","name":"model","type":"MODEL","link":131},{"localized_name":"pulid_flux","name":"pulid_flux","type":"PULIDFLUX","link":125},{"localized_name":"eva_clip","name":"eva_clip","type":"EVA_CLIP","link":123},{"localized_name":"face_analysis","name":"face_analysis","type":"FACEANALYSIS","link":124},{"localized_name":"image","name":"image","type":"IMAGE","link":126},{"localized_name":"attn_mask","name":"attn_mask","shape":7,"type":"MASK","link":null},{"localized_name":"options","name":"options","shape":7,"type":"OPTIONS","link":null},{"localized_name":"weight","name":"weight","type":"FLOAT","widget":{"name":"weight"},"link":null},{"localized_name":"start_at","name":"start_at","type":"FLOAT","widget":{"name":"start_at"},"link":null},{"localized_name":"end_at","name":"end_at","type":"FLOAT","widget":{"name":"end_at"},"link":null}],"outputs":[{"localized_name":"MODEL","name":"MODEL","type":"MODEL","slot_index":0,"links":[122]}],"properties":{"cnr_id":"comfyui_pulid_flux_ll","ver":"1.1.4","Node name for S&R":"ApplyPulidFlux"},"widgets_values":[1,0,1]},{"id":47,"type":"BasicGuider","pos":[1217,401],"size":[241.79998779296875,46],"flags":{},"order":14,"mode":0,"inputs":[{"localized_name":"model","name":"model","type":"MODEL","link":122},{"localized_name":"conditioning","name":"conditioning","type":"CONDITIONING","link":107}],"outputs":[{"localized_name":"GUIDER","name":"GUIDER","type":"GUIDER","slot_index":0,"links":[83]}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"BasicGuider"},"widgets_values":[]},{"id":48,"type":"SamplerCustomAdvanced","pos":[1205,-39],"size":[355.20001220703125,326],"flags":{},"order":15,"mode":0,"inputs":[{"localized_name":"noise","name":"noise","type":"NOISE","link":84},{"localized_name":"guider","name":"guider","type":"GUIDER","link":83},{"localized_name":"sampler","name":"sampler","type":"SAMPLER","link":85},{"localized_name":"sigmas","name":"sigmas","type":"SIGMAS","link":93},{"localized_name":"latent_image","name":"latent_image","type":"LATENT","link":86}],"outputs":[{"localized_name":"output","name":"output","type":"LATENT","slot_index":0,"links":[87]},{"localized_name":"denoised_output","name":"denoised_output","type":"LATENT","links":null}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"SamplerCustomAdvanced"},"widgets_values":[]},{"id":49,"type":"VAEDecode","pos":[1263,-137],"size":[210,46],"flags":{},"order":16,"mode":0,"inputs":[{"localized_name":"samples","name":"samples","type":"LATENT","link":87},{"localized_name":"vae","name":"vae","type":"VAE","link":88}],"outputs":[{"localized_name":"IMAGE","name":"IMAGE","type":"IMAGE","slot_index":0,"links":[89]}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"VAEDecode"},"widgets_values":[]},{"id":50,"type":"PreviewImage","pos":[1587,-169],"size":[841.524169921875,698.3060302734375],"flags":{},"order":17,"mode":0,"inputs":[{"localized_name":"images","name":"images","type":"IMAGE","link":89}],"outputs":[],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"PreviewImage"},"widgets_values":[]},{"id":54,"type":"LoadImage","pos":[729,-490],"size":[315,314],"flags":{},"order":5,"mode":0,"inputs":[{"localized_name":"image","name":"image","type":"COMBO","widget":{"name":"image"},"link":null},{"localized_name":"upload","name":"upload","type":"IMAGEUPLOAD","widget":{"name":"upload"},"link":null}],"outputs":[{"localized_name":"IMAGE","name":"IMAGE","type":"IMAGE","slot_index":0,"links":[126]},{"localized_name":"MASK","name":"MASK","type":"MASK","links":null}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"LoadImage"},"widgets_values":["ref123.jpg","image"]},{"id":6,"type":"CLIPTextEncode","pos":[372,-55],"size":[422.84503173828125,164.31304931640625],"flags":{},"order":10,"mode":0,"inputs":[{"localized_name":"clip","name":"clip","type":"CLIP","link":128},{"localized_name":"text","name":"text","type":"STRING","widget":{"name":"text"},"link":null}],"outputs":[{"localized_name":"CONDITIONING","name":"CONDITIONING","type":"CONDITIONING","slot_index":0,"links":[41]}],"title":"CLIP Text Encode (Positive Prompt)","properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"CLIPTextEncode"},"widgets_values":["Headshot front, exact face, no shadows and neutral lighting"],"color":"#232","bgcolor":"#353"},{"id":10,"type":"VAELoader","pos":[23,275],"size":[311.81634521484375,60.429901123046875],"flags":{},"order":6,"mode":0,"inputs":[{"localized_name":"vae_name","name":"vae_name","type":"COMBO","widget":{"name":"vae_name"},"link":null}],"outputs":[{"localized_name":"VAE","name":"VAE","type":"VAE","slot_index":0,"links":[88]}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"VAELoader"},"widgets_values":["ae.safetensors"]},{"id":45,"type":"PulidFluxModelLoader","pos":[846,137],"size":[315,58],"flags":{},"order":7,"mode":0,"inputs":[{"localized_name":"pulid_file","name":"pulid_file","type":"COMBO","widget":{"name":"pulid_file"},"link":null}],"outputs":[{"localized_name":"PULIDFLUX","name":"PULIDFLUX","type":"PULIDFLUX","slot_index":0,"links":[125]}],"properties":{"cnr_id":"comfyui_pulid_flux_ll","ver":"1.1.4","Node name for S&R":"PulidFluxModelLoader"},"widgets_values":["pulid_flux_v0.9.1.safetensors"]},{"id":41,"type":"DualCLIPLoaderGGUF","pos":[18,114],"size":[315,106],"flags":{},"order":8,"mode":0,"inputs":[{"localized_name":"clip_name1","name":"clip_name1","type":"COMBO","widget":{"name":"clip_name1"},"link":null},{"localized_name":"clip_name2","name":"clip_name2","type":"COMBO","widget":{"name":"clip_name2"},"link":null},{"localized_name":"type","name":"type","type":"COMBO","widget":{"name":"type"},"link":null}],"outputs":[{"localized_name":"CLIP","name":"CLIP","type":"CLIP","slot_index":0,"links":[128]}],"properties":{"cnr_id":"ComfyUI-GGUF","ver":"6ea2651e7df66d7585f6ffee804b20e92fb38b8a","Node name for S&R":"DualCLIPLoaderGGUF"},"widgets_values":["t5xxl_fp8_e4m3fn.safetensors","clip_l.safetensors","flux"]},{"id":63,"type":"UNETLoader","pos":[34.237494731099105,1.475295243394187],"size":[270,82],"flags":{},"order":9,"mode":0,"inputs":[{"localized_name":"unet_name","name":"unet_name","type":"COMBO","widget":{"name":"unet_name"},"link":null},{"localized_name":"weight_dtype","name":"weight_dtype","type":"COMBO","widget":{"name":"weight_dtype"},"link":null}],"outputs":[{"localized_name":"MODEL","name":"MODEL","type":"MODEL","links":[130,131]}],"properties":{"cnr_id":"comfy-core","ver":"0.22.0","Node name for S&R":"UNETLoader"},"widgets_values":["flux1-dev-fp8.safetensors","default"]}],"links":[[41,6,0,26,0,"CONDITIONING"],[83,47,0,48,1,"GUIDER"],[84,25,0,48,0,"NOISE"],[85,16,0,48,2,"SAMPLER"],[86,27,0,48,4,"LATENT"],[87,48,0,49,0,"LATENT"],[88,10,0,49,1,"VAE"],[89,49,0,50,0,"IMAGE"],[93,17,0,48,3,"SIGMAS"],[107,26,0,47,1,"CONDITIONING"],[122,62,0,47,0,"MODEL"],[123,51,0,62,2,"EVA_CLIP"],[124,53,0,62,3,"FACEANALYSIS"],[125,45,0,62,1,"PULIDFLUX"],[126,54,0,62,4,"IMAGE"],[128,41,0,6,0,"CLIP"],[130,63,0,17,0,"MODEL"],[131,63,0,62,0,"MODEL"]],"groups":[],"config":{},"extra":{"ds":{"scale":0.8857857074643494,"offset":[-226.42087335809268,449.607485425746]}},"version":0.4}
-```
-
-## Additional Context
-(Please add any additional context or steps to reproduce the error here)
+Prompt executed in 14.05 seconds
+FETCH ComfyRegistry Data: 30/152
+FETCH ComfyRegistry Data: 35/152
+FETCH ComfyRegistry Data: 40/152
+FETCH ComfyRegistry Data: 45/152
+FETCH ComfyRegistry Data: 50/152
+FETCH ComfyRegistry Data: 55/152
+FETCH ComfyRegistry Data: 60/152
+FETCH ComfyRegistry Data: 65/152
+FETCH ComfyRegistry Data: 70/152
+FETCH ComfyRegistry Data: 75/152
+FETCH ComfyRegistry Data: 80/152
+FETCH ComfyRegistry Data: 85/152

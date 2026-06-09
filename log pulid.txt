@@ -1,0 +1,7 @@
+<script>
+import {puter} from '@heyputer/puter.js';
+// or
+import puter from '@heyputer/puter.js';
+// or 
+import '@heyputer/puter.js'; // puter will be available globally
+</script>
